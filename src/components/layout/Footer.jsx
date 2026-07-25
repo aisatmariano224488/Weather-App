@@ -8,21 +8,19 @@ const Footer = () => {
 
     return (
         <div className='tracking-wide py-2'>
-            <div className='flex place-items-center justify-center py-2'>
-                <h5 className="text-sm opacity-75">Weather data provided by</h5>
-                {theme === 'dark' ?
+            <div className=''>
+                <a
+                    href="https://openweathermap.org/"
+                    className='flex items-center justify-center gap-1 py-2'
+                >
+                    <span className="text-sm opacity-75">Weather data provided by</span>
+
                     <img
-                        src={darkLogo}
+                        src={theme === 'dark' ? darkLogo : lightLogo}
                         alt="OpenWeather Logo"
-                        className="w-25"
+                        className='w-25'
                     />
-                    :
-                    <img
-                        src={lightLogo}
-                        alt="OpenWeather Logo"
-                        className="w-25"
-                    />
-                }
+                </a>
             </div>
             <div className='space-x-4 text-sm'>
                 <p className='text-sm opacity-75 text-center inline-block'>© 2026 Riyan D. Mariano. All rights reserved.</p>
