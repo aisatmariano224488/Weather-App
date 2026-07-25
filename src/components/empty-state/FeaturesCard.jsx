@@ -22,6 +22,7 @@ export const FeaturesCard = () => {
 
                 return (
                     <AnimatedContent
+                        key={feature.id}
                         distance={100}
                         direction="vertical"
                         reverse={false}
@@ -33,7 +34,7 @@ export const FeaturesCard = () => {
                         threshold={0.1}
                         delay={feature.id * 0.1}
                     >
-                        <Card key={feature.id} className="h-full p-10 md:p-6 lg:p-10 space-y-4">
+                        <Card className="h-full p-10 md:p-6 lg:p-10 space-y-4">
                             {Icon && 
                                 <Icon size={50} className='self-center p-3 bg-accent rounded-full' />
                             }

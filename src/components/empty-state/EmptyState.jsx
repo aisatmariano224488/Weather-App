@@ -5,7 +5,7 @@ import SplitText from "@/components/SplitText";
 const EmptyState = () => {
 
     return (
-        <div className='space-y-16 hide-scrollbar overflow-y-scroll'>
+        <div className='space-y-12'>
             <div className='gap-8 text-center mt-16 flex flex-col'>
                 <SplitText
                     text="XWeather"

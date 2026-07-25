@@ -35,9 +35,9 @@
   --sidebar-accent-foreground: #374151;
   --sidebar-border: #e5e7eb;
   --sidebar-ring: #22c55e;
-  --font-sans: DM Sans, sans-serif;
-  --font-serif: Lora, serif;
-  --font-mono: IBM Plex Mono, monospace;
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "Lora", serif;
+  --font-mono: "IBM Plex Mono", monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
@@ -90,9 +90,9 @@
   --sidebar-accent-foreground: #a1a1aa;
   --sidebar-border: #4b5563;
   --sidebar-ring: #34d399;
-  --font-sans: DM Sans, sans-serif;
-  --font-serif: Lora, serif;
-  --font-mono: IBM Plex Mono, monospace;
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "Lora", serif;
+  --font-mono: "IBM Plex Mono", monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
