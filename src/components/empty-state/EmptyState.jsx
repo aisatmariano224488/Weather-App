@@ -7,7 +7,8 @@ const EmptyState = () => {
     return (
         <div className='space-y-12'>
             <div className='gap-8 text-center mt-16 flex flex-col'>
-                <SplitText
+                {<SplitText
+                    tag='h1'
                     text="XWeather"
                     className="text-5xl lg:text-6xl xl:text-7xl font-bold"
                     delay={30}
@@ -20,8 +21,8 @@ const EmptyState = () => {
                     rootMargin="-100px"
                     textAlign="center"
                     showCallback={false}
-                />
-                <SplitText
+                /> || <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold">XWeather</h1>}
+                {<SplitText
                     text="Beautifully minimal weather data, engineered for the modern web."
                     className="text-sm xl:text-base tracking-wide"
                     delay={30}
@@ -34,7 +35,7 @@ const EmptyState = () => {
                     rootMargin="-100px"
                     textAlign="center"
                     showCallback={false}
-                />
+                /> || <p className="text-sm xl:text-base tracking-wide">Beautifully minimal weather data, engineered for the modern web.</p>}
 
                 <SearchBar />
             </div>
