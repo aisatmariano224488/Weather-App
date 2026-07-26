@@ -76,8 +76,14 @@ const Footer = () => {
                                             ) : (
                                             <div>
                                                 {typeof value.desc === 'object' && value.desc !== null
-                                                ? value.desc.desc
-                                                : value.desc}
+                                                ? (
+                                                    <div>
+                                                        <p>{value.desc.title}</p>
+                                                        <p>{value.desc.desc}</p>
+                                                    </div>
+                                                )
+                                                : <p>{value.desc}</p>
+                                                }
                                             </div>
                                         )}
                                     </div>
