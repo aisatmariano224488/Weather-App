@@ -40,7 +40,7 @@ export const FeaturesCard = () => {
                             }
                             <CardHeader className='text-center tracking-wide space-y-2'>
                                 <CardTitle className="font-semibold text-xs lg:text-sm uppercase">{feature.name}</CardTitle>
-                                <CardDescription>{feature.desc}</CardDescription>
+                                <CardDescription className="text-secondary-foreground">{feature.desc}</CardDescription>
                             </CardHeader>
                         </Card>
                     </AnimatedContent>

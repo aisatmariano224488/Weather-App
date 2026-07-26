@@ -62,7 +62,7 @@ function SearchBar() {
                         />
 
                         <InputGroupAddon>
-                            <Search />
+                            <Search className="text-secondary-foreground" />
                         </InputGroupAddon>
 
                         <InputGroupAddon align="inline-end">

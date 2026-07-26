@@ -1,7 +1,5 @@
 
 import EmptyState from "@/components/empty-state/EmptyState";
-
-
 import { useWeather } from "@/context/WeatherContext";
 import Header from "@/components/layout/Header";
 import WeatherContents from "@/components/layout/WeatherContents";

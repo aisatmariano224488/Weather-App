@@ -1,6 +1,6 @@
-import WeatherElements from "@/components/weather/WeatherElements";
-import ForecastList from "@/components/weather/ForecastList";
-import HourlyForecastList from "@/components/weather/HourlyForecastList";
+import WeatherElements from "@/components/weather/elements/WeatherElements";
+import ForecastList from "@/components/weather/forecast/ForecastList";
+import HourlyForecastList from "@/components/weather/hourly/HourlyForecastList";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { useWeather } from "@/context/WeatherContext";
 
