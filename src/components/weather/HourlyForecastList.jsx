@@ -7,7 +7,7 @@ const HourlyForecastList = ({ forecasts, onLoading }) => {
     const hourlyForecast = getHourlyForecasts(forecasts);
 
     return (
-        <Card className="px-2">
+        <Card className="px-2 shadow-none">
 
             <h5 className="text-xs font-bold px-2 xl:px-5">24-HOUR FORECAST <em>3/hrs</em></h5>
 

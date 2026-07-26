@@ -13,7 +13,7 @@ const HourlyforecastItem = ({ forecast, onLoading }) => {
     return (
         onLoading
         ? (
-            <Card className="min-w-18 grow rounded-xl">
+            <Card className="min-w-18 grow rounded-xl shadow-none">
                 <Skeleton className="w-13 h-5 mx-auto" />
 
                 <Skeleton className="place-self-center h-10 w-10" />
@@ -22,7 +22,7 @@ const HourlyforecastItem = ({ forecast, onLoading }) => {
             </Card>
         )
         : (
-            <Card className="min-w-fit grow rounded-xl">  
+            <Card className="min-w-fit grow rounded-xl shadow-none">  
 
                 <CardTitle className="text-center font-bold opacity-50 text-xs lg:text-sm">
                     {formatTime(forecast?.dt_txt)}

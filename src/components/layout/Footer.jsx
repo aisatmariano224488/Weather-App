@@ -36,7 +36,7 @@ const Footer = () => {
                 </a>
             </section>
 
-            <section className='flex flex-col gap-4 md:flex-row md:items-center justify-between'>  
+            <section className='flex flex-col gap-4 md:flex-row place-items-center md:items-center md:justify-between'>  
 
                 <h5 className='text-3xl md:text-4xl font-bold'>XWeather</h5>
 
@@ -44,15 +44,15 @@ const Footer = () => {
                     <Terms />
 
                     {connect.map(link => (
-                            <a
-                                key={link.name}
-                                href={link.url}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='duration-200 transition-all hover:opacity-50'
-                            >
-                                {link.name}
-                            </a>
+                        <a
+                            key={link.name}
+                            href={link.url}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='duration-200 transition-all hover:opacity-50'
+                        >
+                            {link.name}
+                        </a>
                     ))}
                 </div>
 
