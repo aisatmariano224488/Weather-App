@@ -9,7 +9,7 @@ const Footer = () => {
     const connect = [
         {
             "name": "GitHub",
-            "url": "https://github.com/mariano-riyan",
+            "url": "https://github.com/mariano-riyan/Weather-App",
         },
         {
             "name": "Portfolio",
@@ -45,6 +45,7 @@ const Footer = () => {
 
                     {connect.map(link => (
                             <a
+                                key={link.name}
                                 href={link.url}
                                 target='_blank'
                                 rel='noopener noreferrer'
