@@ -33,12 +33,11 @@ const SearchHistory = ({ history, onCityClick, onClearHistory, onRemoveHistory }
                     </button>
 
                     <button
-                        variant='ghost'
                         type='button'
                         aria-label={`Remove ${city} from search history`}
                         onMouseDown={(e) => e.preventDefault()}
                         onClick={() => onRemoveHistory(city)}
-                        className='lg:hidden md:group-hover:block absolute right-2 cursor-pointer'
+                        className='lg:hidden md:group-hover:block absolute right-2 cursor-pointer p-1 rounded-full hover:bg-muted/50 text-muted-foreground hover:text-foreground'
                     >
                         <X size={16} />
                     </button>
