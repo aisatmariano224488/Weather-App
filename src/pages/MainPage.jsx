@@ -5,22 +5,24 @@ import EmptyState from "@/components/empty-state/EmptyState";
 import { useWeather } from "@/context/WeatherContext";
 import Header from "@/components/layout/Header";
 import WeatherContents from "@/components/layout/WeatherContents";
+import Footer from "@/components/layout/Footer";
 
 const MainPage = () => {
 
     const { weatherData } = useWeather();
 
     return (
-        <div className="px-4 md:px-8 mb-4">
-
+        <div className="overflow-x-hidden">		
 			<Header searchVisibility={weatherData} />
+			<div className="px-4 md:px-8 mb-4 pt-25 md:pt-30">
 
-			{!weatherData &&
-				<EmptyState />
-			}
+				{!weatherData &&
+					<EmptyState />
+				}
 
-			<WeatherContents />
-			
+				<WeatherContents />
+				<Footer />
+			</div>
 		</div>
     );
 }
