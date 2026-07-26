@@ -1,0 +1,65 @@
+{
+    "Terms of Service": [
+        {
+            "id": 1,
+            "title": "Acceptance of Terms",
+            "desc": "By accessing or using our weather application, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service."
+        },
+        {
+            "id": 2,
+            "title": "Description of Service",
+            "desc": "Our application is a free, web-based tool designed to provide real-time weather forecasts and meteorological information. Weather data displayed on this platform is powered by OpenWeather (https://openweathermap.org/). We do not charge any fees for accessing or using our application, and we do not feature advertisements."
+        },
+        {
+            "id": 3,
+            "title": "Intellectual Property Rights",
+            "desc": "All original code, user interface design, graphics, layouts, and branding elements associated with this application are the property of the developer and are protected by applicable intellectual property laws. You may not copy, reproduce, distribute, or create derivative works from our original content without explicit permission."
+        },
+        {
+            "id": 4,
+            "title": "Local Storage and Data Usage",
+            "desc": [
+                {
+                    "title": "Local Storage",
+                    "desc": "To save your recent search history and display theme (e.g., dark or light mode) directly on your device."
+                },
+                {
+                    "title": "Session Storage",
+                    "desc": "To temporarily cache weather data and improve application performance during your browsing session."
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Third-Party Data and Disclaimer of Warranties",
+            "desc": [
+                {
+                    "title": "Data Accuracy",
+                    "desc": "Weather forecasts, temperatures, and conditions are sourced from OpenWeather. While we strive to provide accurate and timely information, we do not guarantee the absolute accuracy, completeness, or reliability of any weather data provided by third-party APIs."
+                },
+                {
+                    "title": "'As Is' Basis",
+                    "desc": "The application and its services are provided on an 'as is' and 'as available' basis, without warranties of any kind, either express or implied."
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Limitation of Liability",
+            "desc": "To the fullest extent permitted by law, the developer of this application shall not be held liable for any direct, indirect, incidental, consequential, or punitive damages arising out of or related to your use of the application. This includes, but is not limited to, reliance on weather forecasts for travel, events, or safety decisions resulting in missed plans, property damage, or personal inconvenience."
+        },
+        {
+            "id": 7,
+            "title": "Changes to Terms",
+            "desc": "We reserve the right to modify or update these Terms of Service at any time. Changes will be effective immediately upon posting the updated terms on this page. Your continued use of the application following any changes constitutes your acceptance of the new terms."
+        },
+        {
+            "id": 8,
+            "title": "Contact Information",
+            "desc": {
+                "title": "If you have any questions or concerns regarding these Terms of Service, please contact us at: ",
+                "desc": "Email: marianoriyan@gmail.com"
+            }
+        }
+    ]
+}

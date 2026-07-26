@@ -15,5 +15,9 @@ export const WeatherProvider = ({ children }) => {
 
 /* eslint-disable react-refresh/only-export-components */
 export const useWeather = () => {
-    return useContext(WeatherContext);
+    const context = useContext(WeatherContext);
+    if (!context) {
+        throw new Error("useWeather must be used within a WeatherProvider");
+    }
+    return context;
 }

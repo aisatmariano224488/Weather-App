@@ -10,12 +10,13 @@ import {
     InputGroupInput,
 } from "../ui/input-group";
 import SearchHistory from "./SearchHistory";
+import AnimatedContent from '@/components/AnimatedContent';
 
 function SearchBar() {
 
-    const { handleSearch, history, error } = useWeather();
+    const { handleSearch, history, error, clearHistory, removeHistory } = useWeather();
     const [inputValue, setInputValue] = useState('');
-    const [showHistory, setShowHistory] = useState('opacity-0');
+    const [showHistory, setShowHistory] = useState(false);
 
     const handleHistoryClick = (e) => {
         handleSearch(e.target.value);
@@ -31,12 +32,22 @@ function SearchBar() {
                     document.activeElement?.blur();
                 }             
             }}
-            className="max-w-sm mx-auto h-auto space-y-2"
+            className="max-w-sm place-self-center md:min-w-sm relative gap-2"
         >
-            <Field>
-                <InputGroup className="h-9">
-                    {error
-                        ?
+            <AnimatedContent
+                distance={100}
+                direction="vertical"
+                reverse={false}
+                duration={0.8}
+                ease="power3.out"
+                initialOpacity={0}
+                animateOpacity
+                scale={1}
+                threshold={0.1}
+                delay={0.1}
+            >
+                <Field>
+                    <InputGroup className="h-9">
                         <InputGroupInput
                             placeholder={error ? "City not found" : "Search city..."}
                             autoComplete="off"
@@ -45,51 +56,42 @@ function SearchBar() {
                             value={inputValue}
                             style={{ textTransform: 'capitalize' }}
                             onChange={(e) => setInputValue(e.target.value)}
-                            onFocus={() => setShowHistory('opacity-100')}
-                            onBlur={() => setShowHistory('opacity-0')}
+                            onFocus={() => setShowHistory(true)}
+                            onBlur={() => setShowHistory(false)}
                             className="md:text-md tracking-wide"
                         />
-                        :
-                        <InputGroupInput 
-                            placeholder="Search city..."
-                            autoComplete="off"
-                            aria-label="City"
-                            value={inputValue}
-                            style={{ textTransform: 'capitalize' }}
-                            onChange={(e) => {
-                                setInputValue(e.target.value);
-                            }}
-                            onFocus={() => {setShowHistory('opacity-100')}}
-                            onBlur={() => {setShowHistory('opacity-0')}}
-                            className="md:text-md tracking-wide"
-                        />
-                    }
-                    <InputGroupAddon>
-                        <Search />
-                    </InputGroupAddon>
-                    <InputGroupAddon align="inline-end">
-                        {inputValue && (
-                            <button
-                                type="button"
-                                aria-label="Clear City"
-                                className={`${showHistory} cursor-pointer mx-1 text-muted-foreground hover:text-foreground`}
-                                onClick={() => {
-                                    setInputValue('');
-                                    setShowHistory('opacity-0')
-                                }}
-                            >
-                                <X size={20}/>
-                            </button>
-                        )}
-                    </InputGroupAddon>
-                </InputGroup>
-            </Field>
 
-            <SearchHistory 
-                history={history} 
-                onCityClick={handleHistoryClick} 
-                visibility={showHistory}
-            />
+                        <InputGroupAddon>
+                            <Search />
+                        </InputGroupAddon>
+
+                        <InputGroupAddon align="inline-end">
+                            {inputValue && (
+                                <button
+                                    type="button"
+                                    aria-label="Clear City"
+                                    className="cursor-pointer mx-1 text-muted-foreground hover:text-foreground"
+                                    onClick={() => {
+                                        setInputValue('');
+                                        setShowHistory(false)
+                                    }}
+                                >
+                                    <X size={20}/>
+                                </button>
+                            )}
+                        </InputGroupAddon>
+
+                    </InputGroup>
+                </Field>
+            </AnimatedContent>
+            {showHistory && (
+                <SearchHistory 
+                    history={history} 
+                    onCityClick={handleHistoryClick}
+                    onClearHistory={clearHistory}
+                    onRemoveHistory={removeHistory}
+                />
+            )}
         </form>
     );
 }

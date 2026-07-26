@@ -1,49 +1,28 @@
-import ToggleLayout from "@/components/toggles/index";
+
 import EmptyState from "@/components/empty-state/EmptyState";
-import SearchBar from "@/components/search/SearchBar";
-import WeatherCard from "@/components/weather/WeatherCard";
-import ForecastList from "@/components/weather/ForecastList";
-import HourlyForecastList from "@/components/weather/HourlyForecastList";
+
 
 import { useWeather } from "@/context/WeatherContext";
+import Header from "@/components/layout/Header";
+import WeatherContents from "@/components/layout/WeatherContents";
+import Footer from "@/components/layout/Footer";
 
 const MainPage = () => {
 
-    const {
-		unit,
-		weatherData,
-		forecastData,
-		isLoading,
-	} = useWeather();
+    const { weatherData } = useWeather();
 
     return (
-        <div className="p-4 md:p-8">
+        <div className="overflow-x-hidden tracking-wide">		
+			<Header searchVisibility={weatherData} />
+			<div className="px-4 md:px-8 mb-4 pt-25 md:pt-30">
 
-			<ToggleLayout />
+				{!weatherData &&
+					<EmptyState />
+				}
 
-			{!weatherData &&
-				<EmptyState />
-			}
-
-			{weatherData &&
-				<SearchBar />
-			}
-
-			{isLoading && 
-				<p>Loading...</p>
-			}
-
-			{weatherData &&
-				<WeatherCard weather={weatherData} tempUnit={unit} />
-			}
-
-			{forecastData && 
-				<div>
-					<ForecastList forecasts={forecastData.list}/>
-					<HourlyForecastList forecasts={forecastData.list} />
-				</div>
-			}
-			
+				<WeatherContents />
+				<Footer />
+			</div>
 		</div>
     );
 }
