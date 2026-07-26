@@ -1,32 +1,46 @@
 import { formatTime } from "@/utils/forecast";
+import { Card, CardContent, CardTitle } from "@/components/ui/Card";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const HourlyforecastItem = ({ forecast }) => {
+const HourlyforecastItem = ({ forecast, onLoading }) => {
 
     const temp = forecast?.main?.temp?.toFixed() ?? '';
-    const feelsLike = forecast?.main?.feels_like?.toFixed() ?? '';
     const icon = forecast?.weather[0]?.icon;
     const desc = forecast?.weather[0]?.description ?? 'Weather Icon'
 
-    const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : null;
 
-    return ( 
-        <div className="p-4 md:p-6 xl:p-8 bg-foreground/10 backdrop-blur-xl rounded-xl border border-white/20 md:min-w-50 text-center place-items-center min-w-40">  
+    return (
+        onLoading
+        ? (
+            <Card className="min-w-18 grow rounded-xl">
+                <Skeleton className="w-13 h-5 mx-auto" />
 
-            <span className="font-bold">
-                {formatTime(forecast.dt_txt)}
-            </span>
+                <Skeleton className="place-self-center h-10 w-10" />
 
-            <img
-                src={iconUrl} 
-                alt={desc}
-                className=""
-            />
+                <Skeleton className="w-9 h-6 mx-auto" />    
+            </Card>
+        )
+        : (
+            <Card className="min-w-fit grow rounded-xl">  
 
-            <div className="flex flex-col">
-                <span className="text-sm font-bold">{temp}° / {feelsLike}°</span>
-                <span></span>
-            </div>
-        </div>
+                <CardTitle className="text-center font-bold opacity-50 text-xs lg:text-sm">
+                    {formatTime(forecast?.dt_txt)}
+                </CardTitle>
+
+                <CardContent className="place-self-center">
+                    <img
+                        src={iconUrl} 
+                        alt={desc}
+                        className="w-8 lg:w-10"
+                    />
+                </CardContent>
+
+                <CardContent>
+                    <p className="font-bold text-center text-base lg:text-lg">{temp}°</p>
+                </CardContent>    
+            </Card>
+        )
     );
 }
  
