@@ -6,16 +6,25 @@ import { useTheme } from '@/context/ThemeContext';
 const Footer = () => {
 
     const { theme } = useTheme();
-    
+    const connect = [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/mariano-riyan",
+        },
+        {
+            "name": "Portfolio",
+            "url": "https://marianoriyan.vercel.app/"
+        }
+    ]
 
     return (
-        <div className='tracking-wide py-2 space-y-16'>
-            <div className=''>
+        <div className='tracking-wide py-4 space-y-8'>
+            <section>
                 <a
                     href="https://openweathermap.org/"
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='flex w-fit items-center mx-auto gap-1 py-2'
+                    className='flex w-fit items-center mx-auto gap-1'
                 >
                     <span className="text-sm opacity-75">Weather data provided by</span>
 
@@ -25,20 +34,30 @@ const Footer = () => {
                         className='w-25'
                     />
                 </a>
-            </div>
+            </section>
 
-            <div className='text-sm flex flex-col-reverse md:flex-row place-items-center md:place-items-start gap-3'>
-                <p className='text-sm opacity-75'>© Built with passion by Riyan D. Mariano. All rights reserved.</p>
+            <section className='flex flex-col gap-4 md:flex-row md:items-center justify-between'>  
 
-                <Terms />
+                <h5 className='text-3xl md:text-4xl font-bold'>XWeather</h5>
 
-                {/* <button
-                    type='button'
-                    className='duration-200 transition-opacity opacity-50 hover:opacity-100 cursor-pointer hover:underline underline-offset-4 pb-2'
-                >
-                    Privacy Policy
-                </button> */}
-            </div>
+                <div className='space-x-8 text-xs md:text-sm'>
+                    <Terms />
+
+                    {connect.map(link => (
+                            <a
+                                href={link.url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='duration-200 transition-all hover:opacity-50'
+                            >
+                                {link.name}
+                            </a>
+                    ))}
+                </div>
+
+            </section>
+            
+            <p className='text-xs text-center md:text-start opacity-70'>© 2026 Built with passion by Riyan D. Mariano.</p>
         </div>
     );
 }

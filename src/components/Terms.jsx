@@ -20,7 +20,7 @@ const Terms = () => {
             <SheetTrigger
                 render={
                     <button
-                        className='w-fit duration-200 transition-opacity opacity-50 hover:opacity-100 cursor-pointer hover:underline underline-offset-4'
+                        className='w-fit duration-200 transition-all hover:opacity-50 cursor-pointer'
                     ></button>}
             >
                 Terms of Service
