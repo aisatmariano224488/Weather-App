@@ -14,7 +14,7 @@ export function getDailyForecasts(forecasts = []) {
     });
 }
 
-export function getHourlyForecasts(forecasts = [], count = 9) {
+export function getHourlyForecasts(forecasts = [], count = 8) {
     if (!Array.isArray(forecasts)) return [];
     return forecasts.slice(0, count);
 }

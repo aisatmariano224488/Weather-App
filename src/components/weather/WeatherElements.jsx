@@ -1,9 +1,9 @@
-import { Skeleton } from "#components/ui/skeleton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Progress } from "@/components/ui/progress";
-import { Wind, Droplets, Eye, CloudHail, Cloudy } from "lucide-react";
-import { labelHumidity, labelClouds } from "@/utils/elements";
+import { Skeleton } from "@/components/ui/skeleton";
 import Compass from "@/components/weather/Compass";
+import { labelClouds, labelHumidity } from "@/utils/elements";
+import { CloudHail, Cloudy, Droplets, Eye, Wind } from "lucide-react";
 
 const WeatherElements = ({ weather, unit, onLoading }) => {
 
@@ -52,7 +52,7 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
                 const Icon = value.icon;
 
                 return (
-                    <Card key={value.id} className={`${value.className} shadow-none`}>
+                    <Card key={value.id} className={`${value.className ?? ''} shadow-none`}>
                         {onLoading
                             ? key === 'wind' ? (
                                 <div className="flex flex-row items-center justify-between p-5 lg:flex-col lg:items-stretch gap-4">
@@ -95,7 +95,7 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
                             : key === 'wind' ? (
                                 <div className="flex flex-row justify-between px-5 gap-4">
                                     <CardHeader className="p-0 space-y-4">
-                                        <CardTitle className="uppercase font-semibold flex gap-2 items-center text-xs">
+                                        <CardTitle className="uppercase font-semibold flex gap-2 md:flex-row-reverse md:justify-between text-xs">
                                             <Icon size={15} className="inline-block mr-2" />
                                             {key}
                                         </CardTitle>

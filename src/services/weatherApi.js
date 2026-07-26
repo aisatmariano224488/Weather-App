@@ -18,12 +18,12 @@ const handleResponse = async (response) => {
     return await response.json();
 };
 
-export const fetchWeatherData = async (city, unit) => {
+const request = async (endpoint, city, unit) => {
     if (!API_KEY) {
         throw new Error('Missing OpenWeather API Key in environment variables');
     }
 
-    const url = `${BASE_URL}weather?q=${encodeURIComponent(city)}&units=${unit}&appid=${API_KEY}`;
+    const url = `${BASE_URL}${endpoint}?q=${encodeURIComponent(city)}&units=${unit}&appid=${API_KEY}`;
 
     try {
         const response = await fetch(url);
@@ -32,20 +32,7 @@ export const fetchWeatherData = async (city, unit) => {
         console.error("Fetch weather error:", error);
         throw error;
     } 
-};
+}
 
-export const fetchForecastData = async (city, unit) => {
-    if (!API_KEY) {
-        throw new Error('Missing OpenWeather API Key in environment variables');
-    }
-
-    const url = `${BASE_URL}forecast?q=${encodeURIComponent(city)}&units=${unit}&appid=${API_KEY}`;
-
-    try {
-        const response = await fetch(url);
-        return await handleResponse(response);
-    } catch (error) {
-        console.error("Fetch forecast error:", error);
-        throw error;
-    }
-};
+export const fetchWeatherData = (city, unit) => request('weather', city, unit);
+export const fetchForecastData = (city, unit) => request('forecast', city, unit);
