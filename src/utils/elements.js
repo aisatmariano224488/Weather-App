@@ -32,6 +32,19 @@ export const labelClouds = value => {
     }
 }
 
+export const labelPressure = value => {
+    const pressure = parseInt(value);
+
+    switch (true) {
+        case (pressure < 1009):
+            return 'Low';
+        case (pressure >= 1009 && pressure <= 1022):
+            return 'Normal';
+        case (pressure > 1022):
+            return 'High';
+    }
+}
+
 export const getCardinalDirection = (deg) => {
     if (deg === undefined || deg === null || isNaN(deg)) return 'N/A';
     const normalized = ((deg % 360) + 360) % 360;
