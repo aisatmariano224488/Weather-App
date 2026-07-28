@@ -2,8 +2,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import Compass from "./Compass";
-import { labelClouds, labelHumidity } from "@/utils/elements";
-import { CloudHail, Cloudy, Droplets, Eye, Wind } from "lucide-react";
+import { labelClouds, labelHumidity, labelPressure } from "@/utils/elements";
+import { CloudHail, Cloudy, Droplets, Eye, Wind, Gauge } from "lucide-react";
 
 const WeatherElements = ({ weather, unit, onLoading }) => {
 
@@ -36,6 +36,12 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
             "unit": '%',
             "icon": Droplets,
             "className": 'col-span-2'
+        },
+        "pressure": {
+            "id": 6,
+            "value": weather?.main?.pressure || 0,
+            "unit": 'hpA',
+            "icon": Gauge,
         },
         "rain": {
             "id": 5,
@@ -83,7 +89,7 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
                                             <Skeleton className="h-15 w-20" />
                                             <Skeleton className="w-8 h-5" />
                                         </div>
-                                        {(key === 'humidity' || key === 'clouds') && 
+                                        {(key === 'humidity' || key === 'clouds' || key === 'pressure') && 
                                             <Skeleton className="h-5 w-20"></Skeleton>
                                         }
                                     </div>
@@ -129,6 +135,9 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
                                             }
                                             {key === 'clouds' &&
                                                 <span className="font-bold opacity-65 text-secondary-foreground">{labelClouds(value.value)}</span>
+                                            }
+                                            {key === 'pressure' &&
+                                                <span className="font-bold opacity-65 text-secondary-foreground">{labelPressure(value.value)}</span>
                                             }
                                         </CardDescription>
                                     </CardHeader>
