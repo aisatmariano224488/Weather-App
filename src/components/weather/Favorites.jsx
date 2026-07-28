@@ -25,7 +25,7 @@ const Favorites = () => {
                         className="w-full shadow-none px-4 bg-background flex-row items-center justify-between"
                     >
                         <CardHeader className="flex-1">
-                            <CardTitle className="text-lg md:text-xl">{fav}</CardTitle>
+                            <CardTitle className="text-lg md:text-xl capitalize">{fav}</CardTitle>
                             <CardDescription className="capitalize">{desc}</CardDescription>
                         </CardHeader>
 

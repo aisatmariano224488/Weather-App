@@ -33,7 +33,7 @@ export const useFavorites = () => {
 
     const addFavorite = (cityName) => {
         if (!cityName || !cityName.trim()) return;
-        const trimmed = cityName.trim();
+        const trimmed = cityName.toLowerCase().trim();
         if (!isFavorite(trimmed)) {
             setFavorites((prev) => [trimmed, ...prev]);
         }
