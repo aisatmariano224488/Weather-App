@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
-import Compass from "@/components/weather/Compass";
+import Compass from "./Compass";
 import { labelClouds, labelHumidity } from "@/utils/elements";
 import { CloudHail, Cloudy, Droplets, Eye, Wind } from "lucide-react";
 

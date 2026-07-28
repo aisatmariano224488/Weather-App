@@ -32,7 +32,7 @@ function SearchBar() {
                     document.activeElement?.blur();
                 }             
             }}
-            className="max-w-sm place-self-center md:min-w-sm relative gap-2"
+            className="max-w-sm place-self-center md:min-w-sm relative"
         >
             <AnimatedContent
                 distance={100}
@@ -62,7 +62,7 @@ function SearchBar() {
                         />
 
                         <InputGroupAddon>
-                            <Search />
+                            <Search className="text-secondary-foreground" />
                         </InputGroupAddon>
 
                         <InputGroupAddon align="inline-end">

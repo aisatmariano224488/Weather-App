@@ -1,6 +1,11 @@
-import { Skeleton } from "#components/ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Toggle } from "@/components/ui/toggle";
+import { useWeather } from "@/context/WeatherContext";
+import { Star } from "lucide-react";
 
 function WeatherCard({ weather, tempUnit, onLoading }) {
+
+    const { toggleFavorite, isFavorite } = useWeather();
 
     const unit = tempUnit === 'imperial' ? 'F' : 'C';
     const name = weather?.name ?? '';
@@ -16,7 +21,7 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
         <div className="mt-4 md:mt-0 flex gap-4 flex-col md:flex-row items-center">
             {onLoading
                 ?
-                <div className="flex-1 min-h-[50vh] grid place-items-center md:justify-start">
+                <div className="min-h-[50vh] grid place-items-center md:justify-start">
                     <Skeleton className="w-50 h-10"></Skeleton>
 
                     <div className="grid place-items-center gap-1 md:flex md:gap-8">
@@ -32,8 +37,20 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
                     </div>
                 </div>
                 :
-                <div className="flex-1 min-h-[50vh] grid place-items-center md:justify-start">
-                    <h1 className="text-3xl font-bold text-center">{name}, {country}</h1>
+                <div className="min-h-[50vh] w-full px-8 grid items-center justify-center md:justify-start rounded-4xl">
+
+                    <div className="flex pl-12 items-center">
+                        <h1 className="text-3xl mx-4 font-bold">{name}, {country}</h1>
+
+                        <Toggle
+                            onClick={() => toggleFavorite(name)}
+                            className="aria-pressed:bg-transparent hover:bg-transparent cursor-pointer"
+                            aria-label={isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}
+                        >
+                            <Star className={isFavorite(name) ? 'fill-foreground' : ''} />
+                        </Toggle>
+
+                    </div>
 
                     <div className="grid place-items-center md:flex md:gap-8">
                         <img 
