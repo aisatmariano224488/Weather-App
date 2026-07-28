@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getCachedWeather, setCachedWeather } from '../services/cacheService';
 import { fetchForecastData, fetchWeatherData } from '../services/weatherApi';
 
 export const useWeatherSearch = (writeHistory) => {
 	
-	const [unit, setUnit] = useState('metric');
+	const [unit, setUnit] = useState(() => {
+		const storedUnit = localStorage.getItem('unit');
+		return storedUnit === 'metric' || storedUnit === 'imperial' ? storedUnit : 'metric';
+	});
     const [weatherData, setWeatherData] = useState(null);
     const [forecastData, setForecastData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +18,10 @@ export const useWeatherSearch = (writeHistory) => {
     const toggleUnit = (newUnit) => {
         setUnit(newUnit);
     }
+
+	useEffect(() => {
+		localStorage.setItem('unit', unit)
+	}, [unit])
 
     const handleUnit = async () => {
         const newUnit = unit === 'metric' ? 'imperial' : 'metric';
