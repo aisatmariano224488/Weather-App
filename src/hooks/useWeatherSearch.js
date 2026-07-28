@@ -4,7 +4,10 @@ import { fetchForecastData, fetchWeatherData } from '../services/weatherApi';
 
 export const useWeatherSearch = (writeHistory) => {
 	
-	const [unit, setUnit] = useState(() => localStorage.getItem('unit') || 'metric');
+	const [unit, setUnit] = useState(() => {
+		const storedUnit = localStorage.getItem('unit');
+		return storedUnit === 'metric' || storedUnit === 'imperial' ? storedUnit : 'metric';
+	});
     const [weatherData, setWeatherData] = useState(null);
     const [forecastData, setForecastData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
