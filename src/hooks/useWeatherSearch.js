@@ -12,7 +12,6 @@ export const useWeatherSearch = (writeHistory) => {
     const [lastSearchedCity, setLastSearchedCity] = useState(null);
 	const [isPending, setIsPending] = useState(false);
 
-
     const toggleUnit = (newUnit) => {
         setUnit(newUnit);
     }
@@ -39,13 +38,13 @@ export const useWeatherSearch = (writeHistory) => {
 		const cached = getCachedWeather(cacheKey);
 
 		if (cached) {
+			const resolvedCity = (cached?.data?.weather?.name ?? searchCity).trim().toLowerCase();
+
 			setWeatherData(cached?.data?.weather);
 			setForecastData(cached?.data?.forecast);
-			setLastSearchedCity(searchCity);
+			setLastSearchedCity(resolvedCity);
 
-			writeHistory(searchCity);
-			setError(null);
-			return true;
+			writeHistory(resolvedCity);
 		}
 
 		setIsPending(true);
@@ -58,12 +57,14 @@ export const useWeatherSearch = (writeHistory) => {
 				fetchForecastData(searchCity, effectiveUnit)
 			]);
 			
+			const resolvedCity = (weather?.name ?? searchCity).trim().toLowerCase();
+
 			setWeatherData(weather);
 			setForecastData(forecast);
-			setLastSearchedCity(searchCity);
+			setLastSearchedCity(resolvedCity);
 
 			setCachedWeather(cacheKey, weather, forecast);
-			writeHistory(searchCity);
+			writeHistory(resolvedCity);
 			return true;
 		} catch (error) {
 			setError(error.message);

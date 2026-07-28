@@ -21,7 +21,7 @@ const FavoritesToggle = () => {
                         size="base"
                         className="w-10 cursor-pointer"
                         variant="secondary"
-                        aria-labe="Open favorites"
+                        aria-label="Open favorites"
                     >
                         <Star />
                     </Button>
