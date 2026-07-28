@@ -45,6 +45,7 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
                         <Toggle
                             onClick={() => toggleFavorite(name)}
                             className="aria-pressed:bg-transparent hover:bg-transparent cursor-pointer"
+                            aria-label={isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}
                         >
                             <Star className={isFavorite(name) ? 'fill-foreground' : ''} />
                         </Toggle>

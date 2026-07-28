@@ -21,7 +21,7 @@ const FavoritesToggle = () => {
                         size="base"
                         className="w-10 cursor-pointer"
                         variant="secondary"
-                        
+                        aria-labe="Open favorites"
                     >
                         <Star />
                     </Button>
@@ -34,11 +34,11 @@ const FavoritesToggle = () => {
                     <DrawerTitle>Favorites</DrawerTitle>
                 </DrawerHeader>
 
-                <div className="p-4">
+                <div className="min-h-0 flex-1 overflow-y-auto p-4">
                     <Favorites />
                 </div>
                 <DrawerFooter>
-                    <DrawerClose render={<Button variant="secondary" />}>Cancel</DrawerClose>
+                    <DrawerClose render={<Button variant="secondary" aria-label="Close favorites" />}>Cancel</DrawerClose>
                 </DrawerFooter>
             </DrawerContent>
         </Drawer>

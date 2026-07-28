@@ -3,16 +3,16 @@ import { useWeather } from "@/context/WeatherContext";
 import { getCachedWeather } from "@/services/cacheService";
 
 const Favorites = () => {
-    const { favorites, handleSearch } = useWeather();
+    const { unit, favorites, handleSearch } = useWeather();
 
     return (
         <div className="space-y-4">
             {favorites.map(fav => {
-                const cacheKey = `weather_${fav}_metric`;
+                const cacheKey = `weather_${fav}_${unit}`;
                 const cached = getCachedWeather(cacheKey);
 
-                const desc = cached?.data?.weather?.weather?.[0]?.main || 'clear';
-                const temp = cached?.data?.weather?.main?.temp.toFixed() || 0;
+                const desc = cached?.data?.weather?.weather?.[0]?.main || '-';
+                const temp = cached?.data?.weather?.main?.temp.toFixed() || '-';
                 const icon = cached?.data?.weather?.weather?.[0]?.icon;
                 const iconUrl = icon
                     ? `https://openweathermap.org/img/wn/${icon}@2x.png`

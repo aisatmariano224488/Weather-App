@@ -5,7 +5,11 @@ export const useFavorites = () => {
     const [favorites, setFavorites] = useState(() => {
         try {
             const savedFavorites = JSON.parse(localStorage.getItem('favorites'));
-            return Array.isArray(savedFavorites) ? savedFavorites : [];
+            return Array.isArray(savedFavorites)
+                ? savedFavorites
+                .filter((favorite) => typeof favorite === "string" && favorite.trim())
+                .map((favorite) => favorite.trim())
+                : [];
         } catch {
             return [];
         }
