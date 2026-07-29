@@ -1,20 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getCachedWeather, setCachedWeather } from '../services/cacheService';
 import { fetchForecastData, fetchWeatherData } from '../services/weatherApi';
 
 export const useWeatherSearch = (writeHistory) => {
 	
-	const [unit, setUnit] = useState('metric');
+	const [unit, setUnit] = useState(() => {
+		const storedUnit = localStorage.getItem('unit');
+		return storedUnit === 'metric' || storedUnit === 'imperial' ? storedUnit : 'metric';
+	});
     const [weatherData, setWeatherData] = useState(null);
     const [forecastData, setForecastData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [lastSearchedCity, setLastSearchedCity] = useState(null);
-
+	const [isPending, setIsPending] = useState(false);
 
     const toggleUnit = (newUnit) => {
         setUnit(newUnit);
     }
+
+	useEffect(() => {
+		localStorage.setItem('unit', unit)
+	}, [unit])
 
     const handleUnit = async () => {
         const newUnit = unit === 'metric' ? 'imperial' : 'metric';
@@ -38,15 +45,16 @@ export const useWeatherSearch = (writeHistory) => {
 		const cached = getCachedWeather(cacheKey);
 
 		if (cached) {
+			const resolvedCity = (cached?.data?.weather?.name ?? searchCity).trim().toLowerCase();
+
 			setWeatherData(cached?.data?.weather);
 			setForecastData(cached?.data?.forecast);
-			setLastSearchedCity(searchCity);
+			setLastSearchedCity(resolvedCity);
 
-			writeHistory(searchCity);
-			setError(null);
-			return true;
+			writeHistory(resolvedCity);
 		}
 
+		setIsPending(true);
 		setIsLoading(true);
 		setError(null);
 
@@ -56,20 +64,23 @@ export const useWeatherSearch = (writeHistory) => {
 				fetchForecastData(searchCity, effectiveUnit)
 			]);
 			
+			const resolvedCity = (weather?.name ?? searchCity).trim().toLowerCase();
+
 			setWeatherData(weather);
 			setForecastData(forecast);
-			setLastSearchedCity(searchCity);
+			setLastSearchedCity(resolvedCity);
 
 			setCachedWeather(cacheKey, weather, forecast);
-			writeHistory(searchCity);
+			writeHistory(resolvedCity);
 			return true;
 		} catch (error) {
 			setError(error.message);
 			return false;
 		} finally {
-			setIsLoading(false);
+			setIsPending(false);
+			setTimeout(() => setIsLoading(false), 800);
 		}
 	}
 
-    return{ unit, weatherData, forecastData, isLoading, error, lastSearchedCity, handleUnit, handleSearch };
+    return{ unit, weatherData, forecastData, isLoading, error, lastSearchedCity, isPending, handleUnit, handleSearch };
 }
