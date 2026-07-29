@@ -1,40 +1,67 @@
-# Technical Architecture
+# Technical architecture
 
-## 1. Tech Stack
-* **Framework:** Vite + React
+## Overview
 
-* **Frontend:** Tailwind CSS v4, Shadcn UI
+XWeather is a client-side React single-page application. `main.jsx` wraps `App` in `ThemeProvider` and `WeatherProvider`; `App` renders `MainPage`. There is no router or backend in this repository.
 
-* **API Service:** OpenWeatherMap API
+```text
+Browser
+  ├─ ThemeProvider ── localStorage (theme)
+  └─ WeatherProvider
+       └─ useWeatherLogic
+            ├─ useWeatherSearch ── weatherApi ── OpenWeather API
+            │       └─ cacheService ── sessionStorage (10 min)
+            ├─ useHistory ─────────── localStorage (history, max 5)
+            └─ useFavorites ───────── localStorage (favorites)
+```
 
-* **Storage:** Browser LocalStorage
+## Technology
 
+| Area | Implementation |
+| --- | --- |
+| Application | React 19, Vite 8 |
+| Styling | Tailwind CSS 4 |
+| UI primitives | Base UI with local Shadcn-style components |
+| Animation | GSAP and `@gsap/react` |
+| Icons | Lucide React |
+| Weather provider | OpenWeather current weather and 5 day / 3 hour forecast APIs |
+| Persistence | `localStorage` and `sessionStorage` |
 
-## 2. Data Flow
-* **API Integration:** The application interacts with the OpenWeatherMap API using `fetch`. All requests will be structured to handle loading, success, and error states.
+## Request and cache lifecycle
 
-* **Data Lifecycle:**
+1. A user submits a city through `SearchBar`, a history item, a favorite, or a unit change.
+2. `useWeatherSearch.handleSearch` builds a cache key using the supplied city and effective unit.
+3. `cacheService` checks `sessionStorage`. Valid entries are younger than 10 minutes and are immediately rendered, but do not stop the subsequent network refresh.
+4. `weatherApi` sends current-weather and forecast requests in parallel using `fetch`.
+5. On success, the hook updates React state, writes the cache entry, normalizes the resolved city name, and writes it to recent history.
+6. On failure, it stores an error. Request failures are mapped for 404, 401, and 429 responses, with a generic HTTP message for other non-success responses; the current search UI displays a generic “City not found” error state rather than that specific message.
 
-    * **Request:** User submits a city name.
+## State ownership
 
-    * **Cache Check:** The application checks `sessionStorage` for cached data for that specific city (within a valid timeframe, e.g., 30 minutes).
+| State | Owner | Persistence |
+| --- | --- | --- |
+| Weather, forecast, loading, pending, error, active city, unit | `useWeatherSearch` via `WeatherContext` | Unit in `localStorage`; weather cache in `sessionStorage` |
+| Search history | `useHistory` via `WeatherContext` | `localStorage`, maximum five cities |
+| Favorites | `useFavorites` via `WeatherContext` | `localStorage` |
+| Theme | `ThemeContext` | `localStorage` and root `light`/`dark` class |
 
-    * **API Fetch** (if necessary): If no cache exists, a GET request is sent to the OpenWeatherMap API.
+## UI composition
 
-    * **State Update:** The response is stored in React state for immediate UI rendering and simultaneously saved to `localStorage` for future use.
+- `MainPage` chooses between the empty-state landing view and results layout.
+- `Header` contains contextual search, favorites, theme, and unit controls.
+- `WeatherContents` composes `WeatherCard`, hourly forecast, daily forecast, and weather-element cards.
+- `Footer` provides OpenWeather attribution, terms, and external project links.
+- `services/featuresService` and `services/termsService` expose local JSON content to their UI components.
 
-* **Security:** API key is stored in .env.
+## Environment configuration
 
+| Variable | Required | Default |
+| --- | --- | --- |
+| `VITE_OPENWEATHER_API_KEY` | Yes | None; searches fail with a clear message if missing. |
+| `VITE_OPENWEATHER_BASE_URL` | No | `https://api.openweathermap.org/data/2.5/` |
 
-## 3. Component Structure
-The application follows a hierarchical component-based architecture to ensure modularity and reusability.
+Vite publishes `VITE_*` values to the client bundle. This architecture is suitable only for a browser-exposed, provider-restricted key. Introduce a server-side API boundary before treating the weather-provider key as confidential.
 
-* `App.jsx:` The root component; handles global state *(e.g., unit preference, search history)* and layout logic.
+## Build and quality status
 
-* `SearchBar.jsx:` A controlled component that manages the user input and triggers API fetch functions.
-
-* `WeatherCard.jsx:` The main display component; receives weather data as props and renders the current conditions.
-
-* `ForecastList.jsx:` Iterates through the 5-day forecast data to render individual forecast items.
-
-* `UnitToggle.jsx:` A small, specialized component that allows the user to switch between Metric and Imperial units, updating the global state in `App.jsx`.
+`npm run build` currently succeeds. `npm run lint` currently fails with 11 existing ESLint errors; see [requirements](REQUIREMENTS.md#known-quality-status) for the summarized findings.

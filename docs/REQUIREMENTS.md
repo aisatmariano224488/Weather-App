@@ -1,43 +1,41 @@
-# Functional & Non-Functional Requirements
+# Requirements and current delivery status
 
-## 1. Functional Requirements (Features)
-- [X] `[FR-01]` **City Search:** The application shall provide a search bar allowing users to enter a city name to retrieve weather data.
+Status reflects the codebase as inspected on 29 July 2026.
 
-- [X] `[FR-02]` **Current Weather Display:** The application shall display the current temperature, weather conditions *(e.g., Sunny, Rainy)*, and key meteorological elements *(wind speed, humidity, clouds, rain precipitation, visibility)*.
+## Functional requirements
 
-- [X] `[FR-03]` **5-Day Forecast:** The application shall provide a 5-day weather forecast, showing the expected temperature range and conditions for each day.
+| ID | Requirement | Status | Current implementation |
+| --- | --- | --- | --- |
+| FR-01 | Search by city | Delivered | `SearchBar` submits a city to the OpenWeather current-weather and forecast requests. |
+| FR-02 | Display current weather | Delivered | The dashboard shows location, current and feels-like temperature, description, icon, wind, clouds, visibility, humidity, pressure, and rain when supplied. |
+| FR-03 | Five-day forecast | Delivered | The app derives one entry per date from OpenWeather's 3-hour forecast response. |
+| FR-04 | Toggle Celsius/Fahrenheit | Delivered | Metric/imperial selection refetches the active city and persists in `localStorage`. |
+| FR-05 | Handle weather-service errors | Partially delivered | The service maps missing-key, 401, 404, 429, and other HTTP failures to errors. The search input exposes one generic “City not found” error state rather than the specific message. |
+| FR-06 | Search history | Delivered | Up to five de-duplicated city names are stored in `localStorage`, selectable, removable, or clearable. |
+| FR-07 | Light/dark theme | Delivered | Theme is saved in `localStorage` and applied to the document root. |
+| FR-08 | Detect weather from geolocation | Not delivered | No Geolocation API use exists. |
+| FR-09 | Save favorite cities | Delivered | Favorite city names persist in `localStorage` and can be searched from the favorites panel. |
+| FR-10 | Short-term hourly forecast | Delivered | Eight three-hour forecast intervals are displayed. |
 
-- [X] `[FR-04]` **Unit Toggle:** The application shall provide a UI element to allow users to toggle between Celsius (°C) and Fahrenheit (°F) units, with the choice persisting during the session.
+## Non-functional requirements
 
-- [X] `[FR-05]` **Error Handling:** The application shall display a user-friendly error message if a city is not found or if the API service is unavailable.
+| ID | Requirement | Status | Notes |
+| --- | --- | --- | --- |
+| NFR-01 | Initial dashboard loads under 1.5 seconds on 4G/LTE | Not verified | No performance budget, measurement, or automated test is configured. |
+| NFR-02 | Responsive desktop, tablet, and mobile UI | Implemented; not formally tested | Tailwind responsive layouts are used throughout key dashboard components. |
+| NFR-03 | Basic accessibility | Partially implemented | Controls include several labels and semantic buttons, but no audit or automated accessibility checks are configured. |
+| NFR-04 | Short-duration local cache | Delivered with limitation | Weather responses are cached in `sessionStorage` for 10 minutes. The app still requests fresh data after a cache hit and does not promise offline access. |
+| NFR-05 | Keep API credentials out of client code | Not delivered by current architecture | Vite exposes `VITE_*` variables to the browser; the OpenWeather key is therefore client-visible. A backend proxy is required to meet this requirement. |
 
-- [X] `[FR-06]` **Search History:** The application shall display the search history when the search bar is clicked.
+## Acceptance checks
 
-- [X] `[FR-07]` **Theme Toggle:** The application shall provide a UI element that allow users to toggle the theme *(Light & Dark)*.
+- With a valid API key, search for a valid city and confirm the dashboard appears with current, hourly, daily, and metric cards.
+- Change the unit and confirm the searched city is refreshed in the selected unit.
+- Add and remove a favorite, then refresh the page to confirm it persists.
+- Search several cities and confirm recent history is capped at five entries.
+- Enter an invalid city and confirm the search field displays the error state.
+- Switch themes and refresh to confirm the selected theme persists.
 
-- [ ] `[FR-08]` **Geolocation:** Automatically detect local weather based on user location.
+## Known quality status
 
-- [ ] `[FR-09]` **Personalization:** Save favorite cities for quick access.
-
-
-
-## 2. Non-Functional Requirements
-- `[NFR-01]` **Performance:** The application should load the initial dashboard in under 1.5 seconds under a standard 4G/LTE network connection.
-
-- `[NFR-02]` **Responsiveness:** The user interface must be fully responsive, providing a seamless experience across desktop, tablet, and mobile device screen sizes.
-
-- `[NFR-03]` **Accessibility:** The interface shall meet basic accessibility standards, ensuring sufficient contrast ratios between text and background colors.
-
-- `[NFR-04]` **Reliability:** The application must cache API results locally (e.g., in localStorage or server-side cache) for a short duration to ensure functionality during intermittent network connectivity.
-
-- `[NFR-05]` **Security:** No sensitive API credentials (e.g., weather API keys) shall be exposed in the client-side code; all third-party API interactions must be handled via secure server-side logic.
-
-
-## 3. User Stories
-- [US-01] Daily Planning: "As a commuter, I want to quickly check the current weather in my city so that I can decide how to dress and prepare for my travel."
-
-- [US-02] Weekly Planning: "As a casual user, I want to view a 5-day forecast so that I can plan my outdoor activities for the upcoming weekend."
-
-- [US-03] Unit Customization: "As a user with a regional preference, I want to toggle between Celsius and Fahrenheit so that the temperature data is displayed in a format I understand."
-
-- [US-04] Error Recovery: "As a first-time visitor, I want to receive clear feedback if I mistype a city name so that I know why the app isn't showing the information I requested."
+`npm run build` completes successfully. At the time of this documentation update, `npm run lint` reports 11 errors: one synchronous state update in an effect, two unused callback arguments in `SplitText.jsx`, unused React imports in UI components, and Fast Refresh export warnings. These are quality issues to address; they do not currently block Vite production builds.
