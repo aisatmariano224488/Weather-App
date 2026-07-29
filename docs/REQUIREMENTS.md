@@ -38,4 +38,4 @@ Status reflects the codebase as inspected on 29 July 2026.
 
 ## Known quality status
 
-`npm run build` completes successfully. At the time of this documentation update, `npm run lint` reports 11 errors: one synchronous state update in an effect, two unused callback arguments in `SplitText.jsx`, unused React imports in UI components, and Fast Refresh export warnings. These are quality issues to address; they do not currently block Vite production builds.
+`npm run build` completes successfully. At the time of this documentation update, `npm run lint` reports 11 lint findings: one synchronous state update in an effect, two unused callback arguments in `SplitText.jsx`, unused React imports in UI components, and Fast Refresh export warnings. These are quality issues to address; they do not currently block Vite production builds.

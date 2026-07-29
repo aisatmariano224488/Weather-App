@@ -19,7 +19,7 @@ Geolocation is not implemented. Favorites store city names only; their preview u
 - React 19 and Vite 8
 - Tailwind CSS 4, Base UI/Shadcn-style components, and Lucide icons
 - GSAP animations
-- OpenWeather Current Weather and 5 day / 3 hour Forecast endpoints
+- OpenWeather Current Weather and 5-day / 3-hour Forecast endpoints
 
 ## Run locally
 
