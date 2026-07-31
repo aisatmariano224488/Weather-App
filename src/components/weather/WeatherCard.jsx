@@ -2,6 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Toggle } from "@/components/ui/toggle";
 import { useWeather } from "@/context/WeatherContext";
 import { Star } from "lucide-react";
+import { getWeatherBackground } from '@/utils/weatherBackgrounds';
 
 function WeatherCard({ weather, tempUnit, onLoading }) {
 
@@ -12,10 +13,15 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
     const country = weather?.sys?.country ?? '';
     const icon = weather?.weather?.[0]?.icon;
     const description = weather?.weather?.[0]?.description ?? '';
-    const temp = weather?.main?.temp.toFixed();
-    const feelsLike = weather?.main?.feels_like.toFixed();
+    const temp = weather?.main?.temp?.toFixed() ?? '-';
+    const feelsLike = weather?.main?.feels_like?.toFixed() ?? '-';
 
     const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : null;
+
+    const bgImage = getWeatherBackground({
+        condition: weather?.weather?.[0]?.main,
+        icon
+    });
 
     return ( 
         <div className="mt-4 md:mt-0 flex gap-4 flex-col md:flex-row items-center">
@@ -37,32 +43,35 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
                     </div>
                 </div>
                 :
-                <div className="min-h-[50vh] w-full px-8 grid items-center justify-center md:justify-start rounded-4xl">
+                <div
+                    className="min-h-[50vh] w-full overflow-hidden rounded-4xl bg-cover bg-center text-white shadow-[0_0_30px_rgba(0,0,0,0.25)]"
+                    style={{ backgroundImage: `url(${bgImage})` }}
+                >
+                    <div className="flex min-h-[50vh] w-full flex-col gap-6 bg-linear-to-br from-black/70 via-black/45 to-black/20 px-8 py-8 md:justify-start">
+                        <div className="flex flex-col items-center gap-3 pl-0 md:flex-row md:pl-12">
+                            <h1 className="mx-4 text-3xl font-bold text-white drop-shadow-md">{name}, {country}</h1>
 
-                    <div className="flex pl-12 items-center">
-                        <h1 className="text-3xl mx-4 font-bold">{name}, {country}</h1>
+                            <Toggle
+                                onClick={() => toggleFavorite(name)}
+                                className="aria-pressed:bg-transparent hover:bg-transparent cursor-pointer"
+                                aria-label={isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}
+                            >
+                                <Star className={isFavorite(name) ? 'fill-foreground' : ''} />
+                            </Toggle>
+                        </div>
 
-                        <Toggle
-                            onClick={() => toggleFavorite(name)}
-                            className="aria-pressed:bg-transparent hover:bg-transparent cursor-pointer"
-                            aria-label={isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}
-                        >
-                            <Star className={isFavorite(name) ? 'fill-foreground' : ''} />
-                        </Toggle>
+                        <div className="grid place-items-center md:flex md:gap-8">
+                            <img 
+                                src={iconUrl}
+                                alt={description}
+                                className="drop-shadow-md"
+                            />
 
-                    </div>
-
-                    <div className="grid place-items-center md:flex md:gap-8">
-                        <img 
-                            src={iconUrl}
-                            alt={description}
-                            className=""
-                        />
-
-                        <div className="text-center space-y-1 md:text-start">
-                            <p className="text-7xl">{temp}°{unit}</p>
-                            <p className="text-sm">Feels like {feelsLike}°{unit}</p>
-                            <p className="text-lg capitalize">{description}</p>
+                            <div className="text-center space-y-1 text-white md:text-start">
+                                <p className="text-7xl drop-shadow-md">{temp}°{unit}</p>
+                                <p className="text-sm drop-shadow-md">Feels like {feelsLike}°{unit}</p>
+                                <p className="text-lg capitalize drop-shadow-md">{description}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

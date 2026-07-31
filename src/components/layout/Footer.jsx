@@ -1,6 +1,6 @@
 import Terms from '@/components/Terms';
-import lightLogo from '@/assets/openweatherlogo-master.png';
-import darkLogo from '@/assets/openweatherlogo-negative.png';
+import lightLogo from '@/assets/logo/openweatherlogo-master.png';
+import darkLogo from '@/assets/logo/openweatherlogo-negative.png';
 import { useTheme } from '@/context/ThemeContext';
 
 const Footer = () => {
