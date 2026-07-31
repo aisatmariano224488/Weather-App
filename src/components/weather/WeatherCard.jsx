@@ -13,8 +13,8 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
     const country = weather?.sys?.country ?? '';
     const icon = weather?.weather?.[0]?.icon;
     const description = weather?.weather?.[0]?.description ?? '';
-    const temp = weather?.main?.temp?.toFixed();
-    const feelsLike = weather?.main?.feels_like?.toFixed();
+    const temp = weather?.main?.temp?.toFixed() ?? '-';
+    const feelsLike = weather?.main?.feels_like?.toFixed() ?? '-';
 
     const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : null;
 
