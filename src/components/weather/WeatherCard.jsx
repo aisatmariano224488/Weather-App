@@ -1,8 +1,13 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Toggle } from "@/components/ui/toggle";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { useWeather } from "@/context/WeatherContext";
-import { Star } from "lucide-react";
 import { getWeatherBackground } from '@/utils/weatherBackgrounds';
+import { Star } from "lucide-react";
 
 function WeatherCard({ weather, tempUnit, onLoading }) {
 
@@ -51,13 +56,20 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
                         <div className="flex flex-col items-center gap-3 pl-0 md:flex-row md:pl-12">
                             <h1 className="mx-4 text-3xl font-bold text-white drop-shadow-md">{name}, {country}</h1>
 
-                            <Toggle
-                                onClick={() => toggleFavorite(name)}
-                                className="aria-pressed:bg-transparent hover:bg-transparent cursor-pointer"
-                                aria-label={isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}
-                            >
-                                <Star className={isFavorite(name) ? 'fill-foreground' : ''} />
-                            </Toggle>
+                            <Tooltip className="tracking-wide">
+                                <TooltipTrigger>
+                                    <Toggle
+                                        onClick={() => toggleFavorite(name)}
+                                        className="aria-pressed:bg-transparent hover:bg-transparent cursor-pointer"
+                                        aria-label={isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}
+                                    >
+                                        <Star className={isFavorite(name) ? 'fill-white' : ''} />
+                                    </Toggle>
+                                </TooltipTrigger>
+                                <TooltipContent side="right">
+                                    <p>{isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}</p>
+                                </TooltipContent>
+                            </Tooltip>
                         </div>
 
                         <div className="grid place-items-center md:flex md:gap-8">
