@@ -56,17 +56,21 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
                         <div className="flex flex-col items-center gap-3 pl-0 md:flex-row md:pl-12">
                             <h1 className="mx-4 text-3xl font-bold text-white drop-shadow-md">{name}, {country}</h1>
 
-                            <Tooltip className="tracking-wide">
-                                <TooltipTrigger>
-                                    <Toggle
-                                        onClick={() => toggleFavorite(name)}
-                                        className="aria-pressed:bg-transparent hover:bg-transparent cursor-pointer"
-                                        aria-label={isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}
-                                    >
-                                        <Star className={isFavorite(name) ? 'fill-white' : ''} />
-                                    </Toggle>
-                                </TooltipTrigger>
-                                <TooltipContent side="right">
+                            <Tooltip>
+                                <TooltipTrigger
+                                    render={
+                                        <Toggle
+                                            pressed={isFavorite(name)}
+                                            onPressedChange={() => toggleFavorite(name)}
+                                            className="aria-pressed:bg-transparent hover:bg-transparent cursor-pointer"
+                                            aria-label={isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}
+                                        >
+                                            <Star className={isFavorite(name) ? 'fill-white' : ''} />
+                                        </Toggle>
+                                    }                                
+                                />
+ 
+                                <TooltipContent className="tracking-wide" side="right">
                                     <p>{isFavorite(name) ? `Remove ${name} from the favorites` : `Add ${name} to the favorites`}</p>
                                 </TooltipContent>
                             </Tooltip>
