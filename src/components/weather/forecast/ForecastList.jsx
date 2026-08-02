@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/Card";
 import { getDailyForecasts } from "@/utils/forecast";
 import ForecastItem from "./ForecastItem";
 
-const ForecastList = ({ forecasts, onLoading }) => {
+const ForecastList = ({ forecasts, isLoading }) => {
 
     if (!forecasts?.length) return null;
 
@@ -19,7 +19,7 @@ const ForecastList = ({ forecasts, onLoading }) => {
                             <ForecastItem 
                                 key={forecast.dt} 
                                 forecast={forecast}
-                                onLoading={onLoading}
+                                onLoading={isLoading}
                             />
                     )
                 )}

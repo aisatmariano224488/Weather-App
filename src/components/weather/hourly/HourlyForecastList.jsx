@@ -2,7 +2,7 @@ import { getHourlyForecasts } from "@/utils/forecast";
 import HourlyForecastItem from "./HourlyForecastItem";
 import { Card } from "@/components/ui/Card";
 
-const HourlyForecastList = ({ forecasts, onLoading }) => {
+const HourlyForecastList = ({ forecasts, isLoading }) => {
 
     const hourlyForecast = getHourlyForecasts(forecasts);
 
@@ -17,7 +17,7 @@ const HourlyForecastList = ({ forecasts, onLoading }) => {
                             <HourlyForecastItem 
                                 key={forecast.dt} 
                                 forecast={forecast}
-                                onLoading={onLoading}
+                                isLoading={isLoading}
                             />
                     )
                 )}
