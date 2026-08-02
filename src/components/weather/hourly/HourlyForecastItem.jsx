@@ -2,7 +2,7 @@ import { formatTime } from "@/utils/forecast";
 import { Card, CardContent, CardTitle } from "@/components/ui/Card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const HourlyforecastItem = ({ forecast, onLoading }) => {
+const HourlyforecastItem = ({ forecast, isLoading }) => {
 
     const temp = forecast?.main?.temp?.toFixed() ?? '';
     const icon = forecast?.weather[0]?.icon;
@@ -11,7 +11,7 @@ const HourlyforecastItem = ({ forecast, onLoading }) => {
     const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : null;
 
     return (
-        onLoading
+        isLoading
         ? (
             <Card className="min-w-18 grow rounded-xl shadow-none">
                 <Skeleton className="w-13 h-5 mx-auto" />

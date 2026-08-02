@@ -9,7 +9,7 @@ import { useWeather } from "@/context/WeatherContext";
 import { getWeatherBackground } from '@/utils/weatherBackgrounds';
 import { Star } from "lucide-react";
 
-function WeatherCard({ weather, tempUnit, onLoading }) {
+function WeatherCard({ weather, tempUnit, isLoading }) {
 
     const { toggleFavorite, isFavorite } = useWeather();
 
@@ -30,9 +30,9 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
 
     return ( 
         <div className="mt-4 md:mt-0 flex gap-4 flex-col md:flex-row items-center">
-            {onLoading
+            {isLoading
                 ?
-                <div className="min-h-[50vh] grid place-items-center md:justify-start">
+                <div className="flex min-h-[50vh] w-full place-items-center md:place-items-start flex-col gap-6 bg-linear-to-br from-black/70 via-black/45 to-black/20 px-8 py-8 md:justify-start rounded-4xl">
                     <Skeleton className="w-50 h-10"></Skeleton>
 
                     <div className="grid place-items-center gap-1 md:flex md:gap-8">

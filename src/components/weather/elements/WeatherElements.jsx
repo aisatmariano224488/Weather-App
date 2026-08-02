@@ -5,7 +5,7 @@ import Compass from "./Compass";
 import { labelClouds, labelHumidity, labelPressure } from "@/utils/elements";
 import { CloudHail, Cloudy, Droplets, Eye, Wind, Gauge } from "lucide-react";
 
-const WeatherElements = ({ weather, unit, onLoading }) => {
+const WeatherElements = ({ weather, unit, isLoading }) => {
 
     const windUnit = unit === 'imperial' ? 'mph' : 'm/s';
 
@@ -26,7 +26,9 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
         },
         "visibility": {
             "id": 3,
-            "value": weather?.visibility  * 0.001,
+            "value": weather?.visibility == null
+                ? '-'
+                : (weather?.visibility  * 0.001).toFixed(2),
             "unit": 'km',
             "icon": Eye,
         },
@@ -58,8 +60,8 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
                 const Icon = value.icon;
 
                 return (
-                    <Card key={value.id} className={`${value.className ?? ''} shadow-none`}>
-                        {onLoading
+                    <Card key={value.id} className={`${value.className ?? ''} shadow-[0_0_15px_rgba(0,0,0,0.08)]`}>
+                        {isLoading
                             ? key === 'wind' ? (
                                 <div className="flex flex-row items-center justify-between p-5 lg:flex-col lg:items-stretch gap-4">
                                     <div className="space-y-4">
