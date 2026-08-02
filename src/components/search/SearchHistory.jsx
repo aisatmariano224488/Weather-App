@@ -5,7 +5,7 @@ const SearchHistory = ({ history, onCityClick, onClearHistory, onRemoveHistory }
     if (!history || history.length === 0) return null;
 
     return ( 
-        <div className="absolute top-full left-0 mt-1 z-10 w-full backdrop-blur-xl border-2 rounded-2xl overflow-hidden">
+        <div className="absolute text-secondary-foreground top-full left-0 mt-1 z-10 w-full bg-muted border-2 rounded-2xl overflow-hidden">
             <button
                 type="button"
                 onClick={onClearHistory}
@@ -37,7 +37,7 @@ const SearchHistory = ({ history, onCityClick, onClearHistory, onRemoveHistory }
                         aria-label={`Remove ${city} from search history`}
                         onMouseDown={(e) => e.preventDefault()}
                         onClick={() => onRemoveHistory(city)}
-                        className='lg:hidden md:group-hover:block absolute right-2 cursor-pointer p-1 rounded-full hover:bg-muted/50 text-muted-foreground hover:text-foreground'
+                        className='lg:hidden md:group-hover:block absolute right-2 cursor-pointer p-1 rounded-full hover:bg-muted/5 hover:text-foreground'
                     >
                         <X size={16} />
                     </button>

@@ -26,7 +26,7 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
         },
         "visibility": {
             "id": 3,
-            "value": weather?.visibility  * 0.001,
+            "value": (weather?.visibility  * 0.001).toFixed(2),
             "unit": 'km',
             "icon": Eye,
         },
@@ -58,7 +58,7 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
                 const Icon = value.icon;
 
                 return (
-                    <Card key={value.id} className={`${value.className ?? ''} shadow-none`}>
+                    <Card key={value.id} className={`${value.className ?? ''} shadow-[0_0_15px_rgba(0,0,0,0.08)]`}>
                         {onLoading
                             ? key === 'wind' ? (
                                 <div className="flex flex-row items-center justify-between p-5 lg:flex-col lg:items-stretch gap-4">

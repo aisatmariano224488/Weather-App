@@ -9,7 +9,7 @@ const ForecastList = ({ forecasts, onLoading }) => {
     const dailyForecast = getDailyForecasts(forecasts);
 
     return (
-        <Card className="px-2 shadow-none">
+        <Card className="px-2 shadow-[0_0_15px_rgba(0,0,0,0.08)]">
 
             <h5 className="text-xs font-bold px-2 xl:px-5">WEEKLY OUTLOOK</h5>
 

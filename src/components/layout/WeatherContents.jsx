@@ -23,7 +23,7 @@ const WeatherContents = () => {
                     <ForecastList forecasts={forecastData?.list} onLoading={isLoading}/>
                 </div>
                 <div>
-                    <WeatherElements weather={weatherData} unit={unit} onLoading={isLoading} />
+                    <WeatherElements weather={weatherData} unit={unit} isLoading={isLoading} />
                 </div>
             </div>
         )
