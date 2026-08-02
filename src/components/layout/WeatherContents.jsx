@@ -3,16 +3,31 @@ import ForecastList from "@/components/weather/forecast/ForecastList";
 import HourlyForecastList from "@/components/weather/hourly/HourlyForecastList";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { useWeather } from "@/context/WeatherContext";
+import { useEffect } from "react";
 
 const WeatherContents = () => {
 
     const {
         unit,
+        favorites,
         weatherData,
         forecastData,
+        handleSearch,
 		isLoading,
 		isPending
     } = useWeather();
+
+    useEffect(() => {
+        if (!favorites?.length) return;
+
+        const firstFavorite = favorites[favorites.length - 1];
+
+        const timeoutId = setTimeout(() => {
+            handleSearch(firstFavorite);
+        }, 800);
+
+        return () => clearTimeout(timeoutId);
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         ( isPending || forecastData && weatherData) && (
