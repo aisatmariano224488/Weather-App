@@ -3,16 +3,29 @@ import ForecastList from "@/components/weather/forecast/ForecastList";
 import HourlyForecastList from "@/components/weather/hourly/HourlyForecastList";
 import WeatherCard from "@/components/weather/WeatherCard";
 import { useWeather } from "@/context/WeatherContext";
+import { useEffect } from "react";
 
 const WeatherContents = () => {
 
     const {
         unit,
+        favorites,
         weatherData,
         forecastData,
+        handleSearch,
 		isLoading,
 		isPending
     } = useWeather();
+
+    useEffect(() => {
+        if (!favorites?.length) return;
+
+        const firstFavorite = favorites[0];
+
+        setTimeout(() => {
+            handleSearch(firstFavorite);
+        }, 800)
+    }, [])
 
     return (
         ( isPending || forecastData && weatherData) && (
