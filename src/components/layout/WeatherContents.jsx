@@ -20,12 +20,14 @@ const WeatherContents = () => {
     useEffect(() => {
         if (!favorites?.length) return;
 
-        const firstFavorite = favorites[0];
+        const firstFavorite = favorites[favorites.length - 1];
 
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             handleSearch(firstFavorite);
-        }, 800)
-    }, [])
+        }, 800);
+
+        return () => clearTimeout(timeoutId);
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         ( isPending || forecastData && weatherData) && (
