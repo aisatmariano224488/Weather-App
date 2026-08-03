@@ -63,7 +63,7 @@ const WeatherElements = ({ weather, unit, isLoading }) => {
                     <Card key={value.id} className={`${value.className ?? ''} shadow-[0_0_15px_rgba(0,0,0,0.08)]`}>
                         {isLoading
                             ? key === 'wind' ? (
-                                <div className="flex flex-row items-center justify-between p-5 lg:flex-col lg:items-stretch gap-4">
+                                <div className="flex flex-row justify-between px-5 gap-4">
                                     <div className="space-y-4">
                                         <div className="flex gap-2 items-center">
                                             <Skeleton className="inline-block h-5 w-5 rounded-full" />

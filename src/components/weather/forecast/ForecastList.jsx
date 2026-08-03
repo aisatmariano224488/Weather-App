@@ -19,7 +19,7 @@ const ForecastList = ({ forecasts, isLoading }) => {
                             <ForecastItem 
                                 key={forecast.dt} 
                                 forecast={forecast}
-                                onLoading={isLoading}
+                                isLoading={isLoading}
                             />
                     )
                 )}
