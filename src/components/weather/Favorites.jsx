@@ -56,7 +56,7 @@ const Favorites = () => {
                         <Star />
                         </EmptyMedia>
                         <EmptyTitle>No Favorites Added Yet</EmptyTitle>
-                        <EmptyDescription>Tap the star icon on any city to pin your top destinations here for instant access.</EmptyDescription>
+                        <EmptyDescription className="text-foreground">Tap the star icon on any city to pin your top destinations here for instant access.</EmptyDescription>
                     </EmptyHeader>
                 </Empty>
             }   
