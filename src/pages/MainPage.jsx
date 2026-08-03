@@ -7,14 +7,14 @@ import Footer from "@/components/layout/Footer";
 
 const MainPage = () => {
 
-    const { weatherData } = useWeather();
+    const { weatherData, isPending } = useWeather();
 
     return (
         <div className="overflow-x-hidden tracking-wide">		
 			<Header searchVisibility={weatherData} />
 			<div className="px-4 md:px-8 mb-4 pt-25 md:pt-30">
 
-				{!weatherData &&
+				{(!isPending && !weatherData) &&
 					<EmptyState />
 				}
 
