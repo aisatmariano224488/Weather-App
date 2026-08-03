@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getCachedWeather, setCachedWeather } from '../services/cacheService';
 import { fetchForecastData, fetchWeatherData } from '../services/weatherApi';
+import { toast } from "@/components/ui/toast"
 
 export const useWeatherSearch = (writeHistory) => {
 	
@@ -74,7 +75,14 @@ export const useWeatherSearch = (writeHistory) => {
 			writeHistory(resolvedCity);
 			return true;
 		} catch (error) {
+			setIsLoading(false);
 			setError(error.message);
+
+			toast.add({
+				type: "error",
+				description: "City not found. Please check the spelling and try again.",
+				priority: "high",
+			})
 			return false;
 		} finally {
 			setIsPending(false);

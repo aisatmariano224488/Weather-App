@@ -49,7 +49,7 @@ function SearchBar() {
                 <Field>
                     <InputGroup className="h-9">
                         <InputGroupInput
-                            placeholder={error ? "City not found" : "Search city..."}
+                            placeholder={"Search city..."}
                             autoComplete="off"
                             aria-label="City"
                             aria-invalid={error ? true : undefined}
