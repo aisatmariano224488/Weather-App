@@ -2,7 +2,7 @@ import { Card, CardContent, CardTitle } from "@/components/ui/Card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatWeekday } from "@/utils/forecast";
 
-function ForecastItem({ forecast, onLoading }) {
+function ForecastItem({ forecast, isLoading }) {
 
     const temp = forecast?.main?.temp?.toFixed() ?? '';
     const icon = forecast?.weather?.[0].icon;
@@ -11,7 +11,7 @@ function ForecastItem({ forecast, onLoading }) {
     const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : null;
 
     return (     
-        onLoading
+        isLoading
             ? (
             <Card className="min-w-18 grow rounded-xl shadow-none">
                 <Skeleton className="w-10 h-5 mx-auto" />

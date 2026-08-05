@@ -1,12 +1,25 @@
 import { FeaturesCard } from './FeaturesCard';
 import SearchBar from '@/components/search/SearchBar';
 import SplitText from "@/components/SplitText";
+import Particles from '@/components/Particles';
 
 const EmptyState = () => {
 
     return (
         <div className='space-y-12'>
             <div className='gap-8 text-center mt-16 flex flex-col'>
+                <div className="absolute inset-0 w-full h-150 z-0">
+                    <Particles
+                        particleColors={['#34d399']}
+                        particleCount={200}
+                        particleSpread={10}
+                        speed={0.1}
+                        particleBaseSize={100}
+                        alphaParticles={false}
+                        disableRotation={false}
+                        pixelRatio={1}
+                    />
+                </div>
                 {<SplitText
                     tag='h1'
                     text="XWeather"

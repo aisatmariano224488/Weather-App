@@ -1,3 +1,12 @@
+<div align="center">
+  <a href="https://mariano-riyan.github.io/Weather-App/" target="_blank">
+     <img 
+         width="800" height="496" 
+         alt="Project2" src="https://github.com/user-attachments/assets/71d9f50e-834f-45e6-9ef3-8e753fafec3a" 
+      />
+   </a>
+</div>
+
 # XWeather
 
 XWeather is a single-page weather dashboard built with React and Vite. Search for a city to view current conditions, short-term forecasts, and detailed weather metrics from OpenWeather.
