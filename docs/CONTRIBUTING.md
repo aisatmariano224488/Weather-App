@@ -12,7 +12,6 @@ This guide provides step-by-step instructions on setting up your local environme
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Local Setup](#local-setup)
-  - [Environment Variables](#environment-variables)
 - [Branching Strategy](#branching-strategy)
 - [Commit Message Guidelines](#commit-message-guidelines)
 - [Code Quality & Validation](#code-quality--validation)
@@ -48,8 +47,9 @@ Ensure you have the following installed on your machine:
 1. **Fork & Clone the Repository**
 
    ```bash
-   git clone https://github.com/mariano-riyan/Weather-App.git
+   git clone https://github.com/<your-github-username>/Weather-App.git
    cd Weather-App
+   git remote add upstream https://github.com/mariano-riyan/Weather-App.git
    ```
 
 2. **Install Dependencies**
