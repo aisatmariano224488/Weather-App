@@ -72,3 +72,5 @@ Only variables prefixed with `VITE_` are exposed to this browser application. Th
 - [Vision](docs/VISION.md)
 - [Requirements and delivery status](docs/REQUIREMENTS.md)
 - [Architecture](docs/ARCHITECTURE.md)
+- [Contributing guidelines](docs/CONTRIBUTING.md)
+
