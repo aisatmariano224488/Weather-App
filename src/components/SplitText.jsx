@@ -24,7 +24,9 @@ const SplitText = ({
   const ref = useRef(null);
   const animationCompletedRef = useRef(false);
   const onCompleteRef = useRef(onLetterAnimationComplete);
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(
+    typeof document !== 'undefined' && document.fonts.status === 'loaded'
+  );
 
   // Keep callback ref updated
   useEffect(() => {
@@ -32,14 +34,11 @@ const SplitText = ({
   }, [onLetterAnimationComplete]);
 
   useEffect(() => {
-    if (document.fonts.status === 'loaded') {
-      setFontsLoaded(true);
-    } else {
-      document.fonts.ready.then(() => {
-        setFontsLoaded(true);
-      });
-    }
-  }, []);
+    if (fontsLoaded) return;
+
+    const handleFontsReady = () => setFontsLoaded(true);
+    document.fonts.ready.then(handleFontsReady);
+  }, [fontsLoaded]);
 
   useGSAP(() => {
     if (!ref.current || !text || !fontsLoaded) return;
@@ -50,7 +49,7 @@ const SplitText = ({
     if (el._rbsplitInstance) {
       try {
         el._rbsplitInstance.revert();
-      } catch (_) {
+      } catch {
         /* ignore */
       }
       el._rbsplitInstance = null;
@@ -115,7 +114,7 @@ const SplitText = ({
       });
       try {
         splitInstance.revert();
-      } catch (_) {
+      } catch {
         /* ignore */
       }
       el._rbsplitInstance = null;
