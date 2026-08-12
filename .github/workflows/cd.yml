@@ -14,9 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: read
+      contents: write
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' }}
 
     steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
@@ -31,4 +37,4 @@ jobs:
       - name: Deploy Weather App
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: gh-pages -d dist
+        run: npx gh-pages -d dist
