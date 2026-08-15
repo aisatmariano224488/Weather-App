@@ -7,7 +7,7 @@ const EmptyState = () => {
 
     return (
         <div className='space-y-12'>
-            <div className='gap-8 text-center mt-16 flex flex-col'>
+            <div className='gap-8 min-h-screen text-center mt-16 flex flex-col'>
                 <div className="absolute inset-0 w-full h-150 z-0">
                     <Particles
                         particleColors={['#34d399']}
