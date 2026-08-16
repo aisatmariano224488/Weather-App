@@ -18,13 +18,13 @@ const Header = ({ searchVisibility }) => {
             animateOpacity
             scale={1}
             delay={0.1}
-            className="flex items-center gap-2 md:gap-8 py-2 md:py-4 fixed top-0 right-0 z-50 m-8 bg-background px-4 rounded-full"
+            className="flex items-center gap-2 md:gap-8 py-2 md:py-4 fixed top-0 right-0 z-50 m-8"
         >
             <div className={`${searchVisibility ? '' : 'hidden'}`}>
                 <SearchBar />
             </div>
 
-            <ButtonGroup>
+            <ButtonGroup className="shadow rounded-2xl">
                 <FavoritesToggle />
                 <ThemeToggle />
                 <UnitToggle />
