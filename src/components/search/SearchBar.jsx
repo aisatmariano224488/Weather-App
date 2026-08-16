@@ -47,7 +47,7 @@ function SearchBar() {
                 delay={0.1}
             >
                 <Field>
-                    <InputGroup className="h-9">
+                    <InputGroup className="h-9 shadow">
                         <InputGroupInput
                             placeholder={"Search city..."}
                             autoComplete="off"
