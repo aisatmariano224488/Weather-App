@@ -44,7 +44,7 @@ const EmptyState = () => {
                 <SearchBar />
             </section>
             
-            <section className='px-4 md:px-8 min-h-[39vh] max-w-xl mx-auto tracking-wide'>
+            <section className='px-4 md:px-8 min-h-[70vh] max-w-4xl mx-auto tracking-wide'>
                 <SocialProof />
             </section>
 
