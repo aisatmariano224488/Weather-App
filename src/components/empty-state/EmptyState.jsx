@@ -1,6 +1,7 @@
 import { FeaturesCard } from './FeaturesCard';
 import SearchBar from '@/components/search/SearchBar';
 import SplitText from "@/components/SplitText";
+import SocialProof from './SocialProof';
 
 const EmptyState = () => {
 
@@ -41,6 +42,10 @@ const EmptyState = () => {
                 </div>
 
                 <SearchBar />
+            </section>
+            
+            <section className='px-4 md:px-8 min-h-[70vh] max-w-4xl mx-auto tracking-wide'>
+                <SocialProof />
             </section>
 
             <section className='px-4 md:px-8'>
