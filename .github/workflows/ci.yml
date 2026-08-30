@@ -31,6 +31,9 @@ jobs:
       run: npm run lint
       
     - name: Run build script
+      env:
+        VITE_OPENWEATHER_API_KEY: ${{ secrets.VITE_OPENWEATHER_API_KEY }}
+        VITE_OPENWEATHER_BASE_URL: ${{ secrets.VITE_OPENWEATHER_BASE_URL }}
       run: npm run build
 
     - name: Upload Artifact
