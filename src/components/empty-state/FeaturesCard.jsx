@@ -33,6 +33,7 @@ export const FeaturesCard = () => {
                             <img
                                 src={feature.image}
                                 alt={feature.name}
+                                loading="lazy"
                                 className="max-h-[75vh] rounded-2xl place-self-center"
                             />
                         </div>
