@@ -13,7 +13,7 @@ const SocialProof = () => {
             variableSpeedMin={60}
             variableSpeedMax={120}
             cursorBlinkDuration={0.5}
-            className='text-4xl md:text-4xl lg:text-5xl text-center lg:leading-16'
+            className="font-sans text-4xl md:text-4xl lg:text-5xl text-center lg:leading-16"
         />
     );
 }

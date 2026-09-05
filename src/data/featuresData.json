@@ -2,21 +2,21 @@
     "Features": [
         {
             "id": 1,
-            "name": "Real-time Data",
-            "desc": "Integration with OpenWeatherMap API.",
-            "icon": "clock"
+            "name": "Minimalist, Distraction-Free UI",
+            "desc": "Enjoy a clean, uncluttered layout that delivers essential weather information instantly without unnecessary animations or confusing widgets.",
+            "image": "https://res.cloudinary.com/hfxvyin2/image/upload/v1788603293/Minimalist_p6lrhp.jpg"
         },
         {
             "id": 2,
-            "name": "Search",
-            "desc": "Find weather for any city globally.",
-            "icon": "search"
+            "name": "Real-Time Atmospheric Data",
+            "desc": "Access live weather conditions, humidity levels, wind speeds, and atmospheric pressure updated on demand.",
+            "image": "https://res.cloudinary.com/hfxvyin2/image/upload/v1788603295/Real-time_wzklub.jpg"
         },
         {
             "id": 3,
-            "name": "Unit Toggle",
-            "desc": "Seamless switching between Metric (°C) and Imperial (°F).",
-            "icon": "unit"
+            "name": "Flexible Forecasting (24-Hour & Weekly Outlook)",
+            "desc": "Plan your day ahead with granular 3-hour interval forecasts across a 24-hour window, alongside a complete weekly outlook.",
+            "image": "https://res.cloudinary.com/hfxvyin2/image/upload/v1788603295/Flexible_yc0z7u.jpg"
         }
     ]
 }
