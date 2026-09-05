@@ -8,7 +8,7 @@ const EmptyState = () => {
 
     return (
         <div className='space-y-12'>
-            <div className='w-full h-screen absolute'>
+            <div className='pointer-events-none absolute inset-0 z-0 h-screen w-full'>
                 <Antigravity
                     count={300}
                     magnetRadius={6}
@@ -27,7 +27,7 @@ const EmptyState = () => {
                     fieldStrength={10}
                 />
             </div>
-            <section className='px-4 md:px-8 tracking-wide gap-8 min-h-screen flex flex-col lg:grid grid-cols-2 items-center justify-center'>
+            <section className='z-10 px-4 md:px-8 tracking-wide gap-8 min-h-screen flex flex-col lg:grid grid-cols-2 items-center justify-center'>
                 
                 <div className='flex flex-col'>
                     {<SplitText
