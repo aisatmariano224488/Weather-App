@@ -1,24 +1,14 @@
-import { Card, CardDescription, CardHeader, CardTitle, } from "@/components/ui/Card";
 
 import AnimatedContent from '@/components/AnimatedContent';
 import { getFeaturesData } from '@/services/featuresService';
-import { ClockCheck, MapPinSearch, Thermometer } from 'lucide-react';
 
 export const FeaturesCard = () => {
 
     const features = getFeaturesData().Features;
 
-    const icons = {
-        clock: ClockCheck,
-        search: MapPinSearch,
-        unit: Thermometer
-    }
-
     return (
-        <div className="grid md:grid-cols-3 gap-8">
+        <div>
             {features.map(feature => {
-
-                const Icon = icons[feature.icon];
 
                 return (
                     <AnimatedContent
@@ -31,18 +21,22 @@ export const FeaturesCard = () => {
                         initialOpacity={0}
                         animateOpacity
                         scale={1}
-                        threshold={0.1}
+                        threshold={0.4}
                         delay={feature.id * 0.1}
                     >
-                        <Card className="h-full p-10 md:p-6 lg:p-10 space-y-4">
-                            {Icon && 
-                                <Icon size={50} className='self-center p-3 bg-accent rounded-full' />
-                            }
-                            <CardHeader className='text-center tracking-wide space-y-2'>
-                                <CardTitle className="font-semibold text-xs lg:text-sm uppercase">{feature.name}</CardTitle>
-                                <CardDescription className="text-secondary-foreground">{feature.desc}</CardDescription>
-                            </CardHeader>
-                        </Card>
+                        <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 mb-16 items-center">
+                            <div className="text-center tracking-wide space-y-2">
+                                <h4 className="text-2xl font-semibold xl:text-xl tracking-wide">{feature.name}</h4>
+                                <p className="text-secondary-foreground">{feature.desc}</p>
+                            </div>
+
+                            <img
+                                src={feature.image}
+                                alt={feature.name}
+                                loading="lazy"
+                                className="max-h-[75vh] rounded-2xl place-self-center"
+                            />
+                        </div>
                     </AnimatedContent>
                 )
             })}

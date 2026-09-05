@@ -1,13 +1,33 @@
-import { FeaturesCard } from './FeaturesCard';
 import SearchBar from '@/components/search/SearchBar';
 import SplitText from "@/components/SplitText";
+import Antigravity from '@/components/Antigravity';
+import { FeaturesCard } from './FeaturesCard';
 import SocialProof from './SocialProof';
 
 const EmptyState = () => {
 
     return (
         <div className='space-y-12'>
-            <section className='px-4 md:px-8 tracking-wide gap-8 min-h-screen flex flex-col lg:grid grid-cols-2 items-center justify-center'>
+            <div className='pointer-events-none absolute inset-0 z-0 h-screen w-full'>
+                <Antigravity
+                    count={300}
+                    magnetRadius={6}
+                    ringRadius={7}
+                    waveSpeed={0.4}
+                    waveAmplitude={1}
+                    particleSize={1.5}
+                    lerpSpeed={0.05}
+                    color="#22c55e"
+                    autoAnimate={false}
+                    particleVariance={1}
+                    rotationSpeed={0}
+                    depthFactor={1}
+                    pulseSpeed={3}
+                    particleShape="capsule"
+                    fieldStrength={10}
+                />
+            </div>
+            <section className='z-10 px-4 md:px-8 tracking-wide gap-8 min-h-screen flex flex-col lg:grid grid-cols-2 items-center justify-center'>
                 
                 <div className='flex flex-col'>
                     {<SplitText
